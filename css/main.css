@@ -102,7 +102,7 @@ body {
  * Include this rule to trigger hasLayout and contain floats.
  */
 
-.clearfix {
+/*.clearfix {
     *zoom: 1;
 }
 
