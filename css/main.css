@@ -2,13 +2,27 @@
    Your custom CSS styles
    ========================================================================== */
 
-/* Make space for the fixed navbar */
+
+   html, body {
+    height: 100%; /* Ensure the body takes up the full height */
+    margin: 0; /* Remove default margins */
+    padding: 0;
+}
+
 body {
-    padding-top: 50px; /* Adjust this value based on your navbar's height */
     font-family: "Poppins", sans-serif;
     margin: 0;
     padding: 0;
     background-color: #fdf9ec;
+    display: flex;
+    flex-direction: column; /* Stack children vertically */
+}
+
+/* Container for consistent margins */
+.container {
+    max-width: 1300px; /* Adjust based on your design requirements */
+    margin: 0 auto; /* Center container horizontally and add equal margins */
+    padding: 0 20px; /* Optional: add padding inside the container */
 }
 
 h1 {
@@ -20,6 +34,10 @@ h3 {
     font-family: "Poppins", sans-serif;
     font-weight: 400;
     font-style: normal;
+}
+
+.content {
+    flex: 1; /* Take up available space, pushing footer to bottom */
 }
 
 
@@ -59,19 +77,39 @@ h3 {
 
 /* Container for layout */
 .container1 {
-    background-color: #fdf9ec; /* Replace with your desired color */
-    display: flex;
-    align-items: center; /* Center content vertically */
-    justify-content: space-between; /* Space between text and image */
-    padding: 20px;
-    margin-top: 50px;
+    display: flex; /* Use Flexbox for layout */
+    justify-content: space-between; /* Space between the text and other content */
+    align-items: center; /* Center items vertically */
+    padding-left: 70px; /* Adjust padding as needed */
+    padding-right: 70px;
+    padding-bottom: 100px;
+    padding-top: 20px;
 }
 
 /* Text section styling */
 .text-section {
-    flex: 1; /* Takes up available space */
-    padding-right: 20px; /* Space between text and image */
+    flex: 1; /* Take up half of the container */
+    max-width: 50%; /* Limit width to half of the container */
+    padding-right: 20px; /* Space between text and other content */
 }
+
+/* Image section or other content */
+.other-section {
+    flex: 1; /* Take up the remaining space */
+    max-width: 50%; /* Limit width to half of the container */
+    display: flex; /* Use Flexbox if needed for centering content */
+    align-items: center; /* Center items vertically */
+    justify-content: center; /* Center items horizontally */
+}
+
+/* Styling for images */
+.other-section img {
+    max-width: 70%; /* Ensure image fits within the container */
+    height: auto; /* Maintain aspect ratio */
+    border-radius: 100%; /* Optional: rounded corners */
+    /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Optional: shadow effect */
+}
+
 
 .text-section h1 {
     margin-top: 50px;
@@ -81,15 +119,90 @@ h3 {
     line-height: 1.6; /* Improve readability */
 }
 
-/* Image section styling */
-.image-section img {
-    width: 300px; /* Set to a specific width */
-    max-width: 100%; /* Make sure image is responsive */
-    height: auto; /* Maintain aspect ratio */
+
+
+/* Styling for the image gallery */
+.image-gallery {
+    background-color: #fdf4dc;
+    display: flex; /* Arrange images in a row */
+    flex-wrap: wrap; /* Wrap to the next line if needed */
+    justify-content: space-around; /* Space out the images */
+    gap: 10px; /* Space between images */
+    padding-bottom: 70px;
+    padding-left: 70px;
+    padding-right: 70px;
+}
+
+/* Styling for the gallery heading */
+.image-gallery h2 {
+    font-family: "Poppins", sans-serif; /* Use your preferred font */
+    font-size: 2em; /* Adjust size as needed */
+    margin-bottom: 20px; /* Space between heading and images */
+    text-align: center; /* Center the heading above images */
+    width: 100%; /* Full width to center align the heading */
+    padding: 20px;
+}
+
+.image-wrapper {
+    display: flex;
+    flex-direction: column; /* Stack image and caption vertically */
+    align-items: center; /* Center align items horizontally */
+    max-width: 550px; /* Maximum width for each image wrapper */
+    max-height: 400px; /* Maximum width for each image wrapper */
+    flex: 1 1 calc(50% - 20px); /* Allow two images per row with gap adjustment */
+    box-sizing: border-box; /* Ensure padding and border are included in the width */
+    position: relative; /* Position relative for overlay positioning */
+}
+
+/* Ensure a consistent aspect ratio for images */
+.image-container {
+    position: relative; /* Position relative for overlay positioning */
+    width: 100%; /* Responsive width */
+    height: 200px; /* Fixed height to ensure square aspect ratio */
+    overflow: hidden; /* Hide overflow if the image is larger */
     border-radius: 8px; /* Optional: rounded corners */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Optional: shadow for better look */
-    flex: 1; /* Takes up available space */
 }
+
+.image-container img {
+    width: 100%; /* Stretch to cover the container */
+    height: 100%; /* Stretch to cover the container */
+    object-fit: cover; /* Ensure the image covers the container */
+}
+
+.overlay {
+    position: absolute; /* Position overlay on top of the image */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Black with 50% opacity */
+    opacity: 1; /* Fully visible by default */
+    transition: opacity 0.3s ease; /* Smooth transition for the hover effect */
+    z-index: 1; /* Ensure it is above the image but below the caption */
+}
+
+.image-container:hover .overlay {
+    opacity: 0; /* Hide the overlay on hover */
+}
+
+.image-caption {
+    margin-top: 10px; /* Space between the image and caption */
+    font-family: "Poppins", sans-serif; /* Same font family as used in other text */
+    font-size: 14px; /* Adjust font size as needed */
+    color: #333; /* Text color */
+    text-align: center; /* Center align text */
+    z-index: 2; /* Ensure the caption is above the overlay */
+    position: relative; /* Position relative for z-index to work */
+    padding-bottom: 30px;
+}
+
+
+
+
+
+
+
 
 /* Styling the entire navbar container */
 .navbar {
@@ -147,7 +260,7 @@ h3 {
    ========================================================================== */
 
 /* Media Queries */
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 768px) {
     /* Make the navbar stack vertically on smaller screens */
     .navbar a {
         float: none; /* Stack the links */
@@ -161,13 +274,18 @@ h3 {
         text-align: center; /* Center align text */
     }
 
+    .container1 {
+        flex-direction: column; /* Stack text and image vertically */
+        text-align: center; /* Center align text and image */
+    }
+
     .text-section {
-        padding-right: 0; /* Remove right padding */
+        padding-right: 0; /* Remove right padding on small screens */
         margin-bottom: 20px; /* Space between text and image */
     }
 
-    .image-section {
-        margin-top: 20px; /* Space above the image */
+    .other-section {
+        margin-top: 20px; /* Space above the image on small screens */
     }
 }
 
