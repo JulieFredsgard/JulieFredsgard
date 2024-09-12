@@ -2,9 +2,56 @@
    Your custom CSS styles
    ========================================================================== */
 
+/* Make space for the fixed navbar */
+body {
+    padding-top: 50px; /* Adjust this value based on your navbar's height */
+}
 
+/* Styling the entire navbar container */
+.navbar {
+    background-color: #333; /* Dark background */
+    overflow: hidden; /* Clear floats */
+    position: fixed; /* Sticks to the top of the page */
+    top: 0; /* Always on top */
+    width: 100%; /* Full width */
+    display: flex; /* Flexbox for layout */
+    justify-content: space-between; /* Space between left and right */
+    align-items: center; /* Vertically center the items */
+    z-index: 1000; /* Ensure it stays above other content */
+    /*padding: 0 20px; /* Add some padding on the sides */
+    height: 50px; /* Adjust the height */
+}
 
+/* Styling the links inside the navbar */
+.navbar a {
+    color: white;
+    text-align: center;
+    padding: 14px 20px;
+    text-decoration: none;
+    font-size: 17px;
+}
 
+/* Change color on hover */
+.navbar a:hover {
+    background-color: #ddd; /* Light background */
+    color: black; /* Dark text color */
+}
+
+/* Change the color of the active/current link */
+.navbar a.active {
+    background-color: #04AA6D; /* Highlight the active link */
+    color: white; /* White text */
+}
+
+/* Left-aligned links */
+.navbar-left {
+    display: flex;
+}
+
+/* Right-aligned links */
+.navbar-right {
+    display: flex;
+}
 
 
 
@@ -17,7 +64,14 @@
     /* insert styles here */
 }
 
-
+/* Responsive: Make the navbar stack vertically on smaller screens */
+@media screen and (max-width: 600px) {
+    .navbar a {
+        float: none; /* Stack the links */
+        display: block; /* Make them full-width */
+        text-align: left; /* Align text to the left */
+    }
+}
 
 
 /* ==========================================================================
@@ -51,3 +105,4 @@
 .clearfix {
     *zoom: 1;
 }
+
